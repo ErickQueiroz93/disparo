@@ -22,7 +22,7 @@
 	
 	<?php 
 	
-		if(isset($_POST['emails']))
+		if(isset($_POST['nome']))
 		{
 			
 			
