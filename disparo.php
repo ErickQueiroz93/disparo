@@ -50,6 +50,15 @@
 		</div>
 		
 		<div class="row">
+			<div class="col-lg-12">
+				<div class="form-label-group">
+					<input type="text" id="tela" name="tela" class="form-control" placeholder="Link Tela Fake" required autofocus>
+					<label for="tela">Link Tela Fake</label>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
 			<div class="col-lg-6">
 				<div class="form-group">
 					<label for="exampleFormControlTextarea1">HTML(Laytout Email)</label>
