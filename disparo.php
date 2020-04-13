@@ -51,11 +51,11 @@
 				$envio = mail($email, $subj, $mensagemHTML, $headers);
 				if($envio)
 				{
-					echo '<div class="alert alert-success" role="alert">E-mail para '.$email.' enviado com sucesso.</div>';
+					echo '<div class="alert alert-success" role="alert">E-mail para '.$email.' enviado com sucesso.</div><br>';
 				}	
 				else
 				{
-					echo '<div class="alert alert-danger" role="alert">E-mail para '.$email.' n&atilde;o foi enviado.</div>';
+					echo '<div class="alert alert-danger" role="alert">E-mail para '.$email.' n&atilde;o foi enviado.</div><br>';
 				}	
 				
 			} 
