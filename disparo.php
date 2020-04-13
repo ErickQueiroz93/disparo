@@ -39,7 +39,8 @@
 			$textAr = array_filter($textAr, 'trim');
 			
 			$headers = "MIME-Version: 1.1\r\n";
-			$headers .= "Content-type: text/html; charset=utf-8\r\n";
+			$headers .= "Content-type: text/html; charset=ISO-8859-1\r\n";
+			$headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
 			$headers .= "From: ".$remetente." \r\n";
 			$headers .= "Return-Path: ".$remetente." \r\n";
 			
