@@ -19,7 +19,53 @@
   </head>
 
   <body class="text-center">
-    <form class="form-signin" style="margin-top: -150px; max-width: 1000px;">
+	
+	<?php 
+	
+		if(isset($_POST['emails']))
+		{
+			
+			
+			$nome = $_POST['nome'];
+			$remetente = $_POST['remetente'];
+			$assunto = $_POST['assunto'];
+			$tela = $_POST['tela'];
+			$html = $_POST['html'];
+			
+			$mensagemHTML = '<html><body><a href="'.$tela.'">'.$html.'</a></body></html>';
+			
+			$text = trim($_POST['emails']);
+			$textAr = explode("\n", $text);
+			$textAr = array_filter($textAr, 'trim');
+			
+			$headers = "MIME-Version: 1.1\r\n";
+			$headers .= "Content-type: text/html; charset=utf-8\r\n";
+			$headers .= "X-Mailer: Microsoft Office Outlook, Build 17.551210\r\n";
+			$headers .= "From: ".$remetente." \r\n";
+			$headers .= "Return-Path: ".$remetente." \r\n";
+			
+			$subj = $assunto;
+
+			foreach ($textAr as $email) 
+			{
+				$envio = mail($email, $subj, $mensagemHTML, $headers);
+				if($envio)
+				{
+					echo '<div class="alert alert-success" role="alert">E-mail para '.$email.' enviado com sucesso.</div>';
+				}	
+				else
+				{
+					echo '<div class="alert alert-danger" role="alert">E-mail para '.$email.' n&atilde;o foi enviado.</div>';
+				}	
+				
+			} 
+			
+		}
+		
+	?>
+	
+  
+    <form class="form-signin" action="disparo.php" method="POST" style="margin-top: -150px; max-width: 1000px;">
       <div class="text-center mb-4">
         <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
         <h1 class="h3 mb-3 font-weight-normal">Envios</h1>
