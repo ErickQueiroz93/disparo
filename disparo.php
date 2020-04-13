@@ -40,7 +40,6 @@
 			
 			$headers = "MIME-Version: 1.1\r\n";
 			$headers .= "Content-type: text/html; charset=utf-8\r\n";
-			$headers .= "X-Mailer: Microsoft Office Outlook, Build 17.551210\r\n";
 			$headers .= "From: ".$remetente." \r\n";
 			$headers .= "Return-Path: ".$remetente." \r\n";
 			
