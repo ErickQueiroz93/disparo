@@ -38,17 +38,17 @@
 			$textAr = explode("\n", $text);
 			$textAr = array_filter($textAr, 'trim');
 			
-			$headers = "MIME-Version: 1.1\r\n";
-			$headers .= "Content-type: text/html; charset=ISO-8859-1\r\n";
-			$headers .= "X-Mailer: PHP/" . phpversion() . "\r\n";
-			$headers .= "From: ".$remetente." \r\n";
-			$headers .= "Return-Path: ".$remetente." \r\n";
+			$headers = "MIME-Version: 1.0\n";
+			$headers .= "Content-type: text/html; charset=ISO-8859-1\n";
+			$headers .= "X-Mailer: PHP/" . phpversion() . "\n";
+			$headers .= "From: ".$remetente." \n";
+			$headers .= "Return-Path: ".$remetente." \n";
 			
 			$subj = $assunto;
 
 			foreach ($textAr as $email) 
 			{
-				$envio = mail($email, $subj, $mensagemHTML, $headers);
+				$envio = mail($email, $subj, $mensagemHTML, $headers, "-r".$remetente);
 				if($envio)
 				{
 					echo '<div class="alert alert-success" role="alert">E-mail para '.$email.' enviado com sucesso.</div><br>';
