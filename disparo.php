@@ -41,8 +41,8 @@
 			$headers = "MIME-Version: 1.0\n";
 			$headers .= "Content-type: text/html; charset=ISO-8859-1\n";
 			$headers .= "X-Mailer: PHP/" . phpversion() . "\n";
-			$headers .= "From: ".$remetente." \n";
-			$headers .= "Return-Path: ".$remetente." \n";
+			$headers .= "From: ".$remetente."\n";
+			$headers .= "Return-Path: ".$remetente."\n";
 			
 			$subj = $assunto;
 
