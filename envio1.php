@@ -16,14 +16,14 @@ try {
 	$mail->Username = 'augustomoreno674@gmail.com'; 
 	$mail->Password = 'augusto!@#'; 
 
-	$mail->SetFrom('recadastramento@bb.com.br', 'BB'); 
-	$mail->AddReplyTo('recadastramento@bb.com.br', 'BB'); 
+	//$mail->SetFrom('recadastramento@bb.com.br', 'BB'); 
+	//$mail->AddReplyTo('recadastramento@bb.com.br', 'BB'); 
 	$mail->Subject = 'REC: Assunto';
 
 	$mail->AddAddress('erickqueiroz@gmail.com', 'erickqueiroz@gmail.com');
 	$mail->MsgHTML($mensagemHTML); 
 	$mail->Send();
-	
+	print_r($mail->Send());
 }catch (phpmailerException $e) {
 	echo $e;
 }
