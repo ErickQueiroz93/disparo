@@ -7,29 +7,24 @@ $mail->Host 			= 'smtp.gmail.com';
 $mail->SMTPAuth   		= true;  
 $mail->SMTPKeepAlive 	= true;  
 $mail->SMTPSecure 		= 'tls'; 
-$mail->SMTPDebug 		= 1;
-$mail->SMTPDebug 		= true;
+$mail->SMTPDebug 		= false;
+$mail->SingleTo 		= true;
 $mail->Port       		= 587; 
-//$mail->SMTPSecure 		= true;
 $mail->Username 		= 'augustomoreno674@gmail.com'; 
 $mail->Password 		= 'augusto!@#'; 
 
-$mail->SetFrom('augustomoreno674@gmail.com', 'augustomoreno674@gmail.com'); 
-$mail->AddReplyTo('augustomoreno674@gmail.com', 'augustomoreno674@gmail.com'); 
-$mail->Subject = 'REC: Assunto';
+$mail->SetFrom('bb@46bb.com.br', 'Banco do Brasil46'); 
+$mail->AddReplyTo('bb@46bb.com.br', 'Banco do Brasil46'); 
+$mail->Subject = 'REC: Assunto ssss';
 
-$mail->AddAddress('erickqueiroz93@gmail.com', 'erickqueiroz93@gmail.com');
-$mail->MsgHTML('<html><body>Teste</body></html>'); 
+$mail->AddAddress('erickqueiroz93@gmail.com');
+$mail->AddAddress('erickqueiroz93@outlook.com');
+$mail->AddAddress('queiroz93@protonmail.com');
+$mail->MsgHTML('<html><body>Tesssssswqwqwqste</body></html>'); 
 $mail->AltBody = 'This is a plain-text message body';
-$mail->Send();
+
 if (!$mail->send()) {
 	echo 'Mailer Error: '. $mail->ErrorInfo;
 } else {
 	echo 'Message sent!';
 }
-
-/*try {
-	
-}catch (phpmailerException $e) {
-	echo $e;
-}*/
