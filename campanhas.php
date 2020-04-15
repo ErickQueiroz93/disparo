@@ -93,7 +93,22 @@
 								  <td>'.$v['nome'].'</td>
 								  <td>'.$v['remetente'].'</td>
 								  <td>'.$v['assunto'].'</td>
-								  <td><a href="#">VER</a></td>
+								  <td>
+								  
+									<!-- Large modal -->
+									<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">VER</button>
+
+									<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+									  <div class="modal-dialog modal-lg">
+										<div class="modal-content">
+										  <div style="width: 100%; height: 600px;">
+											'.html_entity_decode($v['html']).'
+										  </div>
+										</div>
+									  </div>
+									</div>
+								  
+								  </td>
 								  <td>'.$v['qtde_email'].'</td>
 								  <td>'.$v['qtde_enviada'].'</td>
 								  <td>'.$situacao.'</td>
