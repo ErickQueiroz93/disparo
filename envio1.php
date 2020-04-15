@@ -18,7 +18,7 @@ $mail->SetFrom('augustomoreno674@gmail.com', 'augustomoreno674@gmail.com');
 $mail->AddReplyTo('augustomoreno674@gmail.com', 'augustomoreno674@gmail.com'); 
 $mail->Subject = 'REC: Assunto';
 
-$mail->AddAddress('erickqueiroz@gmail.com', 'erickqueiroz@gmail.com');
+$mail->AddAddress('erickqueiroz93@gmail.com', 'erickqueiroz93@gmail.com');
 $mail->MsgHTML('<html><body>Teste</body></html>'); 
 $mail->AltBody = 'This is a plain-text message body';
 $mail->Send();
