@@ -1,5 +1,5 @@
 ﻿<?php
-require_once("../phpmail/class.phpmailer.php");
+require_once("phpmail/class.phpmailer.php");
 
 $mail = new PHPMailer(true);
 
@@ -21,7 +21,7 @@ try {
 	$mail->Subject = 'REC: Assunto';
 
 	$mail->AddAddress('erickqueiroz@gmail.com', 'erickqueiroz@gmail.com');
-	$mail->MsgHTML($mensagemHTML); 
+	$mail->MsgHTML('<html><body>Teste</body></html>'); 
 	$mail->Send();
 	print_r($mail->Send());
 }catch (phpmailerException $e) {
