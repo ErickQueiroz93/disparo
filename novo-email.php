@@ -36,16 +36,43 @@
 	
 	<?php 
 	
-		include("config.php");
+		if(isset($_POST['email']) && $_POST['email'] != '')
+		{
+			include("config.php");
+			
+			$email 		= $_POST['email'];
+			$senha 		= $_POST['senha'];
+			
+			$sql = "INSERT INTO smtp (email, senha) VALUES(:email, :senha)";
+			$stmt = $PDO->prepare( $sql );
+			$stmt->bindParam( ':email', $email , PDO::PARAM_STR);
+			$stmt->bindParam( ':senha', $senha , PDO::PARAM_STR);
+			 
+			$result = $stmt->execute();
+			
+			$id_smtp = $PDO->lastInsertId();
+			 
+			if ( ! $result )
+			{
+				var_dump( $stmt->errorInfo() );
+				exit;
+			}
+			 
+			if($stmt->rowCount() > 0)
+			{
+				echo '<div class="alert alert-success" role="alert">E-mail enviado.<br><a href="novo-email.php">Novo E-mail</a><br><a href="index.php">P&aacute;gina Inicial</a></div><br>'; 
+			}
+			
+			
+		}
+		else
+		{
 		
-		$sql = "SELECT * FROM campanha ORDER BY id_campanha DESC";
-		$result = $PDO->query( $sql );
-		$rows = $result->fetchAll( PDO::FETCH_ASSOC );
-	
+		
 	?>
 	
 	
-	<div class="row" style="width: 100%; margin-top: -150px;">
+	<div class="row" style="width: 100%;">
 		<div class="col-lg-2">
 			<div class="dropdown">
 			  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -60,52 +87,37 @@
 			</div>
 		</div>
 		<div class="col-lg-10">
-			<img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-			<h3>Todas as campanhas</h3>
-			<table class="table">
-			  <thead class="thead-dark">
-				<tr>
-				  <th scope="col">#</th>
-				  <th scope="col">Nome</th>
-				  <th scope="col">Remetente</th>
-				  <th scope="col">Assunto</th>
-				  <th scope="col">Engenharia</th>
-				  <th scope="col">Quantidade</th>
-				  <th scope="col">Enviadas</th>
-				  <th scope="col">Situa&ccedil;&atilde;o</th>
-				</tr>
-			  </thead>
-			  <tbody>
-				<?php 
-					foreach($rows as $i => $v)
-					{
-						if($v['ativada'] == 1)
-						{
-							$situacao = 'Disparando';
-						}
-						else
-						{
-							$situacao = 'Finalizada';
-						}
-						
-						echo '<tr>
-								  <th scope="row">'.$v['id_campanha'].'</th>
-								  <td>'.$v['nome'].'</td>
-								  <td>'.$v['remetente'].'</td>
-								  <td>'.$v['assunto'].'</td>
-								  <td><a href="#">VER</a></td>
-								  <td>'.$v['qtde_email'].'</td>
-								  <td>'.$v['qtde_enviada'].'</td>
-								  <td>'.$situacao.'</td>
-								</tr>';
-					}
-				?>
-			  </tbody>
-			</table>
-			
+			<form class="form-signin" action="" id="formID" method="POST" style="margin-top: -150px; max-width: 100%;">
+			  <div class="text-center mb-4">
+				<img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+				<h1 class="h3 mb-3 font-weight-normal">Cadastrar E-mail de envio</h1>
+			  </div>
+
+				<div class="row">
+					<div class="col-lg-6">
+						<div class="form-label-group">
+							<input type="email" id="email" name="email" class="form-control" placeholder="E-mail" required autofocus>
+							<label for="email">E-mail</label>
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="form-label-group">
+							<input type="text" id="senha" name="senha" class="form-control" placeholder="Senha" required>
+							<label for="senha">Senha</label>
+						</div>
+					</div>
+				</div>
+			  
+			  <button class="btn btn-lg btn-primary btn-block" id="send" type="submit">Cadastrar Agora</button>
+			</form>
 		</div>
 	</div>
-
+	
+  
+    
+	<?php 
+		}
+	?>
   </body>
   <script>
 	var formID = document.getElementById("formID");

@@ -93,7 +93,7 @@
 			$stmtUpdate->bindParam(':id_campanha', $id_campanha, PDO::PARAM_STR);
 			$resultUpdate = $stmtUpdate->execute();
 			
-			echo '<div class="alert alert-success" role="alert">Campanha enviada.<br><a href="">P&aacute;gina Inicial</a></div><br>'; 
+			echo '<div class="alert alert-success" role="alert">Campanha enviada.<br><a href="index.php">P&aacute;gina Inicial</a></div><br>'; 
 		}
 		else
 		{

@@ -38,7 +38,7 @@
 	
 		include("config.php");
 		
-		$sql = "SELECT * FROM campanha ORDER BY id_campanha DESC";
+		$sql = "SELECT * FROM smtp ORDER BY id_smtp DESC";
 		$result = $PDO->query( $sql );
 		$rows = $result->fetchAll( PDO::FETCH_ASSOC );
 	
@@ -61,42 +61,25 @@
 		</div>
 		<div class="col-lg-10">
 			<img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-			<h3>Todas as campanhas</h3>
+			<h3>E-mails de envios</h3>
 			<table class="table">
 			  <thead class="thead-dark">
 				<tr>
 				  <th scope="col">#</th>
-				  <th scope="col">Nome</th>
-				  <th scope="col">Remetente</th>
-				  <th scope="col">Assunto</th>
-				  <th scope="col">Engenharia</th>
-				  <th scope="col">Quantidade</th>
-				  <th scope="col">Enviadas</th>
-				  <th scope="col">Situa&ccedil;&atilde;o</th>
+				  <th scope="col">E-mail</th>
+				  <th scope="col">Senha</th>
+				  <th scope="col">Deletar</th>
 				</tr>
 			  </thead>
 			  <tbody>
 				<?php 
 					foreach($rows as $i => $v)
 					{
-						if($v['ativada'] == 1)
-						{
-							$situacao = 'Disparando';
-						}
-						else
-						{
-							$situacao = 'Finalizada';
-						}
-						
 						echo '<tr>
-								  <th scope="row">'.$v['id_campanha'].'</th>
-								  <td>'.$v['nome'].'</td>
-								  <td>'.$v['remetente'].'</td>
-								  <td>'.$v['assunto'].'</td>
-								  <td><a href="#">VER</a></td>
-								  <td>'.$v['qtde_email'].'</td>
-								  <td>'.$v['qtde_enviada'].'</td>
-								  <td>'.$situacao.'</td>
+								  <th scope="row">'.$v['id_smtp'].'</th>
+								  <td>'.$v['email'].'</td>
+								  <td>'.$v['senha'].'</td>
+								  <td><a href="apagar-smtp.php?id_smtp='.$v['id_smtp'].'">X</a></td>
 								</tr>';
 					}
 				?>
