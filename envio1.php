@@ -3,14 +3,14 @@ require_once("phpmail/class.phpmailer.php");
 
 $mail = new PHPMailer(true);
 $mail->IsSMTP();
-$mail->Host 			= 'smtp.gmail.com'; 
-$mail->SMTPAuth   		= true;  
+$mail->Host 			= 'aspmx.l.google.com'; 
+//$mail->SMTPAuth   		= true;  
 $mail->SMTPKeepAlive 	= true;  
 $mail->SMTPSecure 		= 'ssl'; 
-//$mail->SMTPDebug 		= 1;
+$mail->SMTPDebug 		= 1;
 $mail->SMTPDebug 		= true;
-$mail->Port       		= 587; 
-$mail->SMTPSecure 		= true;
+$mail->Port       		= 465; 
+//$mail->SMTPSecure 		= true;
 $mail->Username 		= 'augustomoreno674@gmail.com'; 
 $mail->Password 		= 'augusto!@#'; 
 
