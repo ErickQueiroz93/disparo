@@ -73,12 +73,17 @@
 				  <th scope="col">Quantidade</th>
 				  <th scope="col">Enviadas</th>
 				  <th scope="col">Situa&ccedil;&atilde;o</th>
+				  <th scope="col">Logs</th>
 				</tr>
 			  </thead>
 			  <tbody>
 				<?php 
 					foreach($rows as $i => $v)
 					{
+						$sqlContaEnviados = "SELECT SUM(enviado) AS qtde FROM email WHERE enviado = 1 AND id_campanha = '".$v['id_campanha']."' GROUP BY enviado";
+						$resultContaEnviados = $PDO->query( $sqlContaEnviados );
+						$rowsContaEnviados = $resultContaEnviados->fetch();
+						
 						if($v['ativada'] == 1)
 						{
 							$situacao = 'Disparando';
@@ -110,8 +115,9 @@
 								  
 								  </td>
 								  <td>'.$v['qtde_email'].'</td>
-								  <td>'.$v['qtde_enviada'].'</td>
+								  <td>'.$rowsContaEnviados['qtde'].'</td>
 								  <td>'.$situacao.'</td>
+								  <td><a target="_blank" href="log/campanha_log_'.$v['id_campanha'].'.txt">Logs</a></td>
 								</tr>';
 					}
 				?>
