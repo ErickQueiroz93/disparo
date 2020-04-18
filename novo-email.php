@@ -43,7 +43,7 @@
 			$email 		= $_POST['email'];
 			$senha 		= $_POST['senha'];
 			
-			$date = date('Y-m-d');
+			$date = date('Y-m-d', strtotime('-2 days', strtotime(date('Y-m-d'))));
 			$enviado = 0;
 			$sql = "INSERT INTO smtp (email, senha, date, enviado) VALUES(:email, :senha, :date, :enviado)";
 			$stmt = $PDO->prepare( $sql );
