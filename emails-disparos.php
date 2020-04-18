@@ -45,7 +45,7 @@
 	?>
 	
 	
-	<div class="row" style="width: 100%; margin-top: -150px;">
+	<div class="row" style="width: 100%;">
 		<div class="col-lg-2">
 			<div class="dropdown">
 			  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

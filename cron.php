@@ -9,12 +9,12 @@ $result = $PDO->query( $sql );
 $rows = $result->fetch();
 
 //BUSCA EMAIL PARA DISPARO
-$sqlEmail = "SELECT * FROM smtp WHERE enviado < 2000 AND date < '".date('Y-m-d')."' ORDER BY id_smtp ASC LIMIT 1";
+$sqlEmail = "SELECT * FROM smtp WHERE enviado < 400 AND date < '".date('Y-m-d')."' ORDER BY id_smtp ASC LIMIT 1";
 $resultEmail = $PDO->query( $sqlEmail );
 $rowsEmail = $resultEmail->fetch();
-
+//var_dump($rowsEmail);die;
 //BUSCA LISTA EMAIL
-$sqlLista = "SELECT * FROM email WHERE enviado = 0 AND id_campanha = '".$rows['id_campanha']."' ORDER BY id_email ASC LIMIT 4";
+$sqlLista = "SELECT * FROM email WHERE enviado = 0 AND id_campanha = '".$rows['id_campanha']."' ORDER BY id_email ASC LIMIT 15";
 $resultLista = $PDO->query( $sqlLista );
 $rowsLista = $resultLista->fetchAll(PDO::FETCH_ASSOC);
 
@@ -48,11 +48,11 @@ foreach($rowsLista as $i => $v)
 	$mail->AddAddress($v['email']);
 	if(!$mail->send()) 
 	{
-		$log .= str_replace("\r"," ", $v['email'])."Nao enviado".$quebra;
+		$log .= $v['email']."Nao enviado".$quebra;
 	} 
 	else 
 	{
-		$log .= str_replace("\r"," ", $v['email'])."Enviado com sucesso".$quebra;
+		$log .= $v['email']."Enviado com sucesso".$quebra;
 	}
 	$sql = "UPDATE email SET data_envio = ?, enviado = ? WHERE id_email = ?";
 	$PDO->prepare($sql)->execute([$data, $enviado, $v['id_email']]);

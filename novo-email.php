@@ -43,10 +43,14 @@
 			$email 		= $_POST['email'];
 			$senha 		= $_POST['senha'];
 			
-			$sql = "INSERT INTO smtp (email, senha) VALUES(:email, :senha)";
+			$date = date('Y-m-d');
+			$enviado = 0;
+			$sql = "INSERT INTO smtp (email, senha, date, enviado) VALUES(:email, :senha, :date, :enviado)";
 			$stmt = $PDO->prepare( $sql );
 			$stmt->bindParam( ':email', $email , PDO::PARAM_STR);
 			$stmt->bindParam( ':senha', $senha , PDO::PARAM_STR);
+			$stmt->bindParam(':date', $date, PDO::PARAM_STR);
+			$stmt->bindParam(':enviado', $enviado, PDO::PARAM_STR);
 			 
 			$result = $stmt->execute();
 			

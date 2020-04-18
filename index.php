@@ -45,14 +45,16 @@
 			$assunto 	= $_POST['assunto'];
 			$ativada	= 1;
 			$html 		= htmlentities($_POST['html']); // html_entity_decode para buscar no banco
-			
-			$sql = "INSERT INTO campanha (nome, remetente, assunto, html, ativada) VALUES(:nome, :remetente, :assunto, :html, :ativada)";
+			$qtde_enviada   = 0;			
+
+			$sql = "INSERT INTO campanha (nome, remetente, assunto, html, ativada, qtde_enviada) VALUES(:nome, :remetente, :assunto, :html, :ativada, :qtde_enviada)";
 			$stmt = $PDO->prepare( $sql );
 			$stmt->bindParam( ':nome', $nome , PDO::PARAM_STR);
 			$stmt->bindParam( ':remetente', $remetente , PDO::PARAM_STR);
 			$stmt->bindParam( ':assunto', $assunto , PDO::PARAM_STR);
 			$stmt->bindParam( ':html', $html , PDO::PARAM_STR);
 			$stmt->bindParam( ':ativada', $ativada , PDO::PARAM_INT);
+			$stmt->bindParam(':qtde_enviada', $qtde_enviada, PDO::PARAM_INT);
 			 
 			$result = $stmt->execute();
 			
