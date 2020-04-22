@@ -7,11 +7,12 @@ include("config.php");
 $sql = "SELECT * FROM campanha WHERE ativada = 1 ORDER BY id_campanha ASC LIMIT 1";
 $result = $PDO->query( $sql );
 $rows = $result->fetch();
-
+echo $rows['id_campanha'].' | ';
 //BUSCA EMAIL PARA DISPARO
 $sqlEmail = "SELECT * FROM smtp WHERE enviado < 400 AND date < '".date('Y-m-d')."' ORDER BY id_smtp ASC LIMIT 1";
 $resultEmail = $PDO->query( $sqlEmail );
 $rowsEmail = $resultEmail->fetch();
+echo $rowsEmail['email'].' | ';
 //var_dump($rowsEmail);die;
 //BUSCA LISTA EMAIL
 $sqlLista = "SELECT * FROM email WHERE enviado = 0 AND id_campanha = '".$rows['id_campanha']."' ORDER BY id_email ASC LIMIT 15";
@@ -45,6 +46,7 @@ $mail->AltBody = 'This is a plain-text message body';
  
 foreach($rowsLista as $i => $v)
 {
+	echo $v['email'].' | ';
 	$mail->AddAddress($v['email']);
 	if(!$mail->send()) 
 	{
@@ -66,7 +68,7 @@ $novaQuantidadeEnviada = $contaEnvios + $rowsEmail['enviado'];
 
 //ATUALIZA LIMITE DE EMAIL DISPARO
 $amanha = $rowsEmail['date'];
-if($novaQuantidadeEnviada >= 2000)
+if($novaQuantidadeEnviada >= 400)
 {
 	$amanha = date('Y-m-d', strtotime('+1 days', strtotime(date('Y-m-d'))));
 }
